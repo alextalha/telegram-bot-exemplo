@@ -1,13 +1,20 @@
 {
-  "name": "chat-example",
-  "version": "0.0.0",
-  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "Exemplo de Robo Telegram",
   "main": "server.js",
-  "repository": "",
-  "author": "Mostafa Eweda <mo.eweda@gmail.com>",
-  "dependencies": {
-    "async": "~0.2.8",
-    "express": "~3.2.4",
-    "socket.io": "~0.9.14"
-  }
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alextalha/telegram-bot-exemplo.git"
+  },
+  "author": "Alex Talha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alextalha/telegram-bot-exemplo/issues"
+  },
+  "homepage": "https://github.com/alextalha/telegram-bot-exemplo#readme"
 }

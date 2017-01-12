@@ -1,84 +1,29 @@
-//
-// # SimpleServer
-//
-// A simple chat server using Socket.IO, Express, and Async.
-//
-var http = require('http');
-var path = require('path');
+var TelegramBot = require('node-telegram-bot-api');
 
-var async = require('async');
-var socketio = require('socket.io');
-var express = require('express');
+// replace the value below with the Telegram token you receive from @BotFather
+var token = '317693926:AAHxQZlQC0TAYcaNV3nHv4Mu-8RerA3yCqc';
 
-//
-// ## SimpleServer `SimpleServer(obj)`
-//
-// Creates a new instance of SimpleServer with the following options:
-//  * `port` - The HTTP port to listen on. If `process.env.PORT` is set, _it overrides this value_.
-//
-var router = express();
-var server = http.createServer(router);
-var io = socketio.listen(server);
+// Create a bot that uses 'polling' to fetch new updates
+var bot = new TelegramBot(token, { polling: true });
 
-router.use(express.static(path.resolve(__dirname, 'client')));
-var messages = [];
-var sockets = [];
+// Matches "/echo [whatever]"
+bot.onText(/\/echo (.+)/, function (msg, match) {
+  // 'msg' is the received Message from Telegram
+  // 'match' is the result of executing the regexp above on the text content
+  // of the message
 
-io.on('connection', function (socket) {
-    messages.forEach(function (data) {
-      socket.emit('message', data);
-    });
+  var chatId = msg.chat.id;
+  var resp = match[1]; // the captured "whatever"
 
-    sockets.push(socket);
+  // send back the matched "whatever" to the chat
+  bot.sendMessage(chatId, resp);
+});
 
-    socket.on('disconnect', function () {
-      sockets.splice(sockets.indexOf(socket), 1);
-      updateRoster();
-    });
+// Listen for any kind of message. There are different kinds of
+// messages.
+bot.on('message', function (msg) {
+  var chatId = msg.chat.id;
 
-    socket.on('message', function (msg) {
-      var text = String(msg || '');
-
-      if (!text)
-        return;
-
-      socket.get('name', function (err, name) {
-        var data = {
-          name: name,
-          text: text
-        };
-
-        broadcast('message', data);
-        messages.push(data);
-      });
-    });
-
-    socket.on('identify', function (name) {
-      socket.set('name', String(name || 'Anonymous'), function (err) {
-        updateRoster();
-      });
-    });
-  });
-
-function updateRoster() {
-  async.map(
-    sockets,
-    function (socket, callback) {
-      socket.get('name', callback);
-    },
-    function (err, names) {
-      broadcast('roster', names);
-    }
-  );
-}
-
-function broadcast(event, data) {
-  sockets.forEach(function (socket) {
-    socket.emit(event, data);
-  });
-}
-
-server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
-  var addr = server.address();
-  console.log("Chat server listening at", addr.address + ":" + addr.port);
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, "Received your message");
 });
