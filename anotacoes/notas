@@ -1,0 +1,68 @@
+echo "# node_udemy" >> README.md
+
+ git init
+
+git add README.md
+
+git commit -m "first commit"
+
+git remote add origin https://github.com/alextalha/node_udemy.git
+git remote add origin https://github.com/alextalha/node_udemy.git
+
+
+ git remote add origin https://github.com/alextalha//telegram-bot-exemplo.git
+
+git push -u origin master
+
+git add .
+
+
+vim .gitignore
+
+git status
+
+git commit -m 'subindo o projeto'
+
+
+clonando 
+
+git clone https://github.com/yagop/node-telegram-bot-api.git
+
+
+
+criar um arquivo para ignorados 
+
+ $ cat .gitignore
+    # exclude everything except directory foo/bar
+    /*
+    !/foo
+    /foo/*
+    !/foo/bar
+    
+    
+
+
+============================================
+remover uma conexão com um projeto externo
+
+git remote rm origin
+===============================================
+
+====================================================================
+=========================
+erros e meios de acertar
+=========================
+#fatal: refusing to merge unrelated histories
+git pull origin master --allow-unrelated-histories
+
+adiciona o arquivo novamente 
+
+git add . 
+
+commita e da o push denovo 
+
+
+================================================================================
+
+
+

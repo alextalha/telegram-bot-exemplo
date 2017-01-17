@@ -1,7 +1,7 @@
 {
-  "name": "workspace",
+  "name": "telegram-bot",
   "version": "1.0.0",
-  "description": "Exemplo de Robo Telegram",
+  "description": "modelo para teste de bot do telegram",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/alextalha/telegram-bot-exemplo/issues"
   },
-  "homepage": "https://github.com/alextalha/telegram-bot-exemplo#readme"
+  "homepage": "https://github.com/alextalha/telegram-bot-exemplo#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "http": "0.0.0",
+    "node-telegram-bot-api": "^0.25.0",
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7",
+    "tourist": "0.0.4",
+    "util": "^0.10.3"
+  },
+  "devDependencies": {
+    "printscreen": "^1.2.1"
+  }
 }
