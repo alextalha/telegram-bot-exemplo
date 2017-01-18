@@ -12,18 +12,18 @@ module.exports = function(bot,chatId,link){
  
  };
  
- //console.log(__dirname+"/images/"+domain(link)+".png");
- //console.log('link = ' + link);
- 
+  bot.sendMessage(chatId, "carregando....\n");
+
+
   printscreen('http://'+ link, {
      
       viewport: {
-        width: 1650,
-        height: 1060
+        width: 1280,
+        height: 720
       },
       timeout: 1000,
       format: 'png',
-      quality: 80,
+      quality: 70,
      capture: function () {
      
         var divs = document.querySelectorAll('div').length;
@@ -37,25 +37,19 @@ module.exports = function(bot,chatId,link){
 
       fs.stat(data.file, function(err, stats) {
 
-
-          //console.log(data.file);
-          
-          if(err) 
-            throw err;  
+        if(err) throw err;
   
-          //if a file
           if (stats.isFile()) {
             
             fs.readFile(data.file, 'utf8', function(err, contents) {
             
-            
             fs.rename(data.file, __dirname+'/images/'+domain(link)+'.png', function (err) {
+              
               if (err) throw err;
-             console.log('Move complete.');
              
-              bot.sendPhoto(
-              { chat_id: chatId,caption: link ,files: {photo: __dirname+'/images/'+domain(link)+'.png' }
-              }, function (err, msg){ console.log(err); console.log(msg); });
+                bot.sendPhoto(chatId, __dirname+'/images/'+domain(link)+'.png', {
+                  caption: 'Imagem Gerada'
+              });
               
             });
            

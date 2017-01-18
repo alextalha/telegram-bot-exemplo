@@ -9,11 +9,10 @@ var fs = require('fs');
 
 
 // replace the value below with the Telegram token you receive from @BotFather
-var token = "317693926:AAHxQZlQC0TAYcaNV3nHv4Mu-8RerA3yCqc";
+var token = "318036094:AAEGiNMFRtfK3q1GjNx9fagnWF9pK57wv_M";
 
 // Create a bot that uses 'polling' to fetch new updates
 var bot = new TelegramBot(token, { polling: true });
-
 
 /*OPCOES */
 // Matches "/echo [whatever]"
@@ -87,8 +86,6 @@ if(match[1] == 'manha'){
   bot.sendMessage(chatId, resp);
 });
 
-
-
 /*PRINTAR UMA PAGINA E DEVOLVER NO BOT */
 
 bot.onText(/\/profilephoto (.+)/, function (msg,match) {
@@ -101,7 +98,6 @@ bot.onText(/\/profilephoto (.+)/, function (msg,match) {
 });
 
 
-
 bot.onText(/\/testuserphoto$/, function onMessage(msg) {
     var chatId = msg.chat.id;
     var userId = msg.from.id;
@@ -112,23 +108,25 @@ bot.onText(/\/testuserphoto$/, function onMessage(msg) {
 
 });
 
-
-
 bot.onText(/\/print (.+)/, function (msg,match) {
   
 
     var resp = 'Esse ai foi o site printado';
     var chatId = msg.chat.id;
-   // var  printscreen = require('./printscreen')(bot,chatId,match[1]);
+    var  printscreen = require('./printscreen')(bot,chatId,match[1]);
     
     
-  bot.sendPhoto(msg.chat.id, '1484321789782.png', {caption: "Printando o Site Selecionado"});
+    
+  /*funciona */  
+ // bot.sendPhoto(msg.chat.id, '1484321789782.png', {caption: "Printando o Site Selecionado"});
   
   //bot.sendPhoto(chatId, fs.createReadStream('./uol.png'), 'Chronoscape by Alexiuss').then(console.log)
   
   /**
   console.log( __dirname+'/uol') ;
+  */
   
+  /*
   bot.sendPhoto({
   chat_id: chatId,
   caption: 'Telegram Logo',
