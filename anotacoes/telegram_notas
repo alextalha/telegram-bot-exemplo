@@ -13,3 +13,44 @@ http://picoledelimao.github.io/blog/2016/01/22/creating-a-telegram-bot-in-nodejs
 https://nodejs.org/api/fs.html
 
 http://www.devdungeon.com/content/file-manipulation-nodejs
+
+
+
+create table mensagens( 
+id_mensagem int not null auto_increment primary key,
+id_bot int, id_grupo int,
+id_tipo_mensagem int,
+id_periocidade_mensagem int,
+ds_legenda varchar(50),
+url_mensagem varchar(155),
+hr_tempo_processo time,
+hr_inicio_processamento time,
+hr_fim_processamento time,
+dh_cadastro datetime,
+dh_ultimo_envio datetime );                                                                                                        
+
+
++-------------------------+--------------+------+-----+---------+----------------+
+| Field                   | Type         | Null | Key | Default | Extra          |
++-------------------------+--------------+------+-----+---------+----------------+
+| id_mensagem             | int(11)      | NO   | PRI | NULL    | auto_increment |
+| id_bot                  | int(11)      | YES  |     | NULL    |                |
+| id_grupo                | int(11)      | YES  |     | NULL    |                |
+| id_tipo_mensagem        | int(11)      | YES  |     | NULL    |                |
+| id_periocidade_mensagem | int(11)      | YES  |     | NULL    |                |
+| ds_legenda              | varchar(50)  | YES  |     | NULL    |                |
+| url_mensagem            | varchar(155) | YES  |     | NULL    |                |
+| hr_tempo_processo       | time         | YES  |     | NULL    |                |
+| hr_inicio_processamento | time         | YES  |     | NULL    |                |
+| hr_fim_processamento    | time         | YES  |     | NULL    |                |
+| dh_cadastro             | datetime     | YES  |     | NULL    |                |
+| dh_ultimo_envio         | datetime     | YES  |     | NULL    |                |
++-------------------------+--------------+------+-----+---------+----------------+
+
+
+pegar o id do grupo
+
+passar um texto qualquer.
+/updates asdasdsdssd
+
+
