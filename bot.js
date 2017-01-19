@@ -58,13 +58,14 @@ let team = ['Wagner','BTT','Cansado','Thiaguinho','Allan','Pequeno','Tio Chico',
 
 
 
-bot.onText(/\/updates/, function (msg,match) {
+bot.onText(/\/params/, function (msg,match) {
   
-  var xpto= '';
   var chatId = msg.chat.id;
-  bot.sendMessage(chatId, '..updates');
-  bot.getUpdates().then(console.log);
-  
+ // bot.sendMessage(chatId, '..updates');
+  bot.getUpdates().then(function(data){
+    //console.log(data[0].message) ;
+    bot.sendMessage(chatId,JSON.stringify(data[0].message));
+  });
   
 });
 
