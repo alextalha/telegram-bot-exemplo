@@ -54,3 +54,25 @@ passar um texto qualquer.
 /updates asdasdsdssd
 
 
+OBTENDO O ID DO CANAL 
+========================================================================================================================
+
+criamos um canal . colocamos ele como publico 
+
+criamos um nome publico @algumaCoisa
+https://api.telegram.org/bot111:222/sendMessage?chat_id=@channelName&text=123
+https://api.telegram.org/bot318036094:AAEGiNMFRtfK3q1GjNx9fagnWF9pK57wv_M/sendMessage?chat_id=@canaldaileon&text=123
+
+inputando uma mensagem podemos adiquirir o retorno como json e vindo o nome do canal 
+ Após isso ganhanos o id do grupo 
+
+{ "ok" : true, "result" : { "chat" : { "id" : -1001005582487, "title" : "Test Private Channel", "type" : "channel" }, "date" : 1448245538, "message_id" : 7, "text" : "123ds" } }
+
+
+pegamos o id -100009090909 alguma coisa 
+
+e colocamos o canal como privado novamente 
+
+agora em vez de passar no parametro chat_id@canaldaileon iremos passar  chat_id=-100009090909
+
+===========================================================================================================================

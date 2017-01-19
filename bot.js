@@ -36,10 +36,60 @@ bot.onText(/\/ajuda/, function(msg, match) {
   "/pic - retorna sua foto do telegram \n" +
   "/padaria - diz quem tem que ir na padaria \n "+
   "/agua [manha/tarde] - diz quem tem que ir pegar água \n"+
-  "/print [url sem http ] - retorna a imagem printada de um site \n";
+  "/print [url sem http ] - retorna a imagem printada de um site \n"+
+  "/get mensagem - retorna o Json de usuario ou grupo  \n"+
+  "/privado id_user - Envia uma mensagem para o usuário \n";
+ 
   
   bot.sendMessage(fromId, mensagem);
 });
+
+
+/*MANDANDO MENSAGEM privada */
+bot.onText(/\/privado (.+)/, function (msg,match) {
+  
+    var id_usuario = match[1];
+    console.log(match[1]);
+    
+    var resp = "Olá Amiguinho! Se você consegue ler essa mensagem é porque estou ficando espertinho";
+    bot.sendMessage(id_usuario, resp);
+    
+});
+
+
+bot.onText(/\/location (.+)/, function (msg,match) {
+  
+    var id_usuario = match[1];
+    console.log(match[1]);
+  /*
+  first (JSON|integer): Your own JSON object, or chat_id: Unique identifier for the message recipient — User or GroupChat id.
+  latitude (number): Latitude of location
+  longitude (number): Longitude of location
+  [reply_to_message_id] (integer): If the message is a reply, ID of the original message.
+  [reply_markup] (KeyboardMarkup): Additional interface options. A JSON object (don’t worry about serializing; it’s handled) for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+    bot.sendLocation(first, latitude, longitude, [reply_to_message_id], [reply_markup])
+    */
+    //bot.sendLocation('324479927', '-22.9191683', '-43.2544633', [reply_to_message_id], [reply_markup])
+    
+    var coords = null;
+        coords = ['-22.9184235', '-43.2522469'];
+    var fromId = msg.from.id;
+    
+    bot.sendLocation(fromId, coords[0], coords[1]);
+    //var resp = "Olá Amiguinho! Se você consegue ler essa mensagem é porque estou ficando espertinho";
+    //bot.sendMessage(id_usuario, resp);
+    
+});
+
+/*MANDANDO MENSAGEM grupo */
+bot.onText(/\/canal (.+)/, function (msg,match) {
+  
+    var id_grupo = '-180514894';
+    var resp = match[1];
+    bot.sendMessage(id_grupo, resp);
+    
+});
+
 
 /*PADARIA*/
 bot.onText(/\/padaria/, function (msg,match) {
@@ -57,8 +107,8 @@ let team = ['Wagner','BTT','Cansado','Thiaguinho','Allan','Pequeno','Tio Chico',
 });
 
 
-
-bot.onText(/\/params/, function (msg,match) {
+/*RESGATAR O JSON DOS VALORES DO GRUPO */
+bot.onText(/\/get/, function (msg,match) {
   
   var chatId = msg.chat.id;
  // bot.sendMessage(chatId, '..updates');
@@ -68,7 +118,6 @@ bot.onText(/\/params/, function (msg,match) {
   });
   
 });
-
 
 
 // Matches "/echo [whatever]"
